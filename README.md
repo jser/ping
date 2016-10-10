@@ -28,6 +28,7 @@ url: https://jser.info/
 [短い説明]
 ```
 
+既存の[Issue](https://github.com/jser/ping/issues)で興味深いものがあるなら :+1: などのリアクションボタンで投票すると参考になります。
 
 ## Gitter
 
