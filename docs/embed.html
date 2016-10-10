@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Embed Ping example</title>
+    <link rel="stylesheet" href="https://unpkg.com/dialog-polyfill@0.4.4/dialog-polyfill.css">
+    <script src="https://unpkg.com/dialog-polyfill@0.4.4"></script>
+    <style>
+        dialog {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+<dialog id="js-jser-ping-dialog">
+    <button id="js-jser-ping-close" style="position: absolute;right: 0;top: 0;">閉じる✗</button>
+    <iframe width="500"
+            height="500"
+            src="./index.html"
+            scrolling="no"
+            frameborder="no"
+            onload="this.style.height=this.contentDocument.body.scrollHeight +'px';"
+            style="border: 0 none transparent;display: block"
+    ></iframe>
+</dialog>
+<button id="js-jser-ping-open">Open Dialog!</button>
+<script>
+    var dialog = document.querySelector("#js-jser-ping-dialog");
+    dialogPolyfill.registerDialog(dialog);
+    document.querySelector('#js-jser-ping-open').onclick = function() {
+        dialog.show();
+    };
+    document.querySelector('#js-jser-ping-close').onclick = function() {
+        dialog.close();
+    };
+</script>
+</body>
+</html>

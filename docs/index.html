@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Ping! to JSer.info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            background-color: #fff;
+        }
+
+        .form-description {
+            min-height: 4em;
+        }
+
+        .notification {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: block;
+            animation: show 0.3s ease-out;
+            animation-fill-mode: forwards;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @keyframes show {
+            0% {
+                display: none;
+                opacity: 0;
+            }
+            99% {
+                display: block;
+            }
+            100% {
+                display: block;
+                opacity: 1;
+            }
+        }
+    </style>
+    <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="notification is-primary notification-success" hidden>
+            <button class="delete close-button"></button>
+            投稿ありがとうございます！
+        </div>
+
+        <h1 class="title">Ping! to JSer.info</h1>
+        <h2 class="subtitle">
+            JSer.infoに紹介したいURLを送るフォーム
+        </h2>
+        <label class="label">URL</label>
+        <p class="control">
+            <input class="input" type="text" id="js-url" placeholder="紹介したいURL" required>
+        </p>
+        <label class="label">説明文(任意)</label>
+        <p class="control">
+            <textarea class="textarea form-description" id="js-description" placeholder="URLに関する短い説明文"></textarea>
+        </p>
+        <label class="label">GitHubアカウント(任意)</label>
+        <p class="control">
+            <input class="input" id="js-user" type="text" placeholder="@jser">
+            <span class="help">JSer.infoで紹介された場合に、通知して欲しいアカウントがある場合は書いて下さい</span>
+            <span class="help">空の場合でも、匿名で投稿できます。</span>
+        </p>
+        <p class="control">
+            <button id="js-submit" class="button is-primary is-medium">投稿</button>
+        </p>
+    </div>
+</section>
+<script>
+    window.onload = function() {
+        var submitButton = document.getElementById("js-submit");
+        var closeButtons = document.querySelectorAll(".close-button");
+        Array.prototype.slice.call(closeButtons).forEach(function(button) {
+            button.addEventListener("click", function(event) {
+                var target = event.target.parentNode;
+                target.hidden = true;
+            });
+        });
+        function showSuccessNotification() {
+            var notification = document.querySelector(".notification-success");
+            notification.hidden = false;
+        }
+
+        function createIssue(issueData, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                if (200 <= xhr.status && xhr.status < 300) {
+                    callback(null, xhr.responseText);
+                } else {
+                    callback(new Error(xhr.responseText));
+                }
+            };
+            xhr.onerror = function() {
+                callback(new Error(xhr.responseText));
+            };
+            xhr.open("POST", "https://d6qujk40a3.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create");
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(issueData));
+        }
+
+        function onComplete() {
+            submitButton.classList.remove("is-loading");
+            submitButton.classList.add("is-disabled");
+            showSuccessNotification();
+        }
+
+        function onFailure(error) {
+            submitButton.classList.remove("is-loading");
+            alert(error);
+        }
+
+        function onSubmit(event) {
+            event.preventDefault();
+            var URL = document.getElementById("js-url").value.trim();
+            if (!URL) {
+                return alert("URLは必須です");
+            }
+            var description = document.getElementById("js-description").value;
+            var user = document.getElementById("js-user").value;
+            submitButton.classList.add("is-loading");
+            submitButton.disabled = true;
+            createIssue({
+                url: URL,
+                description: description,
+                user: user
+            }, function(error, response) {
+                if (error) {
+                    onFailure(error);
+                } else {
+                    onComplete(response);
+                }
+            });
+        }
+
+        submitButton.addEventListener("click", onSubmit);
+    }
+</script>
+</body>
+</html>
