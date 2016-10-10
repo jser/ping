@@ -12,6 +12,10 @@
 このリポジトリは、もっと気軽に作ったものとかのURLを投げやすくすることを目的にしています。
 そのため、匿名でIssueを立てる方法もあるので、作ったものをどんどん投げていくといいと思います。
 
+- [https://jser.info/ping/](https://jser.info/ping/)
+
+[![Ping to JSer.info](./docs/img/screenshot.png)](https://jser.info/ping/)
+
 手動でIssueを作りたい場合は、[Create New Issue](https://github.com/jser/ping/issues/new?body=---%0D%0Atitle%3A+JSer.info%0D%0Aurl%3A+https%3A%2F%2Fjser.info%2F%0D%0A%0D%0A---%0D%0A%0D%0A%5B%E7%9F%AD%E3%81%84%E8%AA%AC%E6%98%8E%5D)から次のフォーマットを埋めると良さそうです。
 
 ```yaml
