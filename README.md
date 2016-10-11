@@ -30,6 +30,13 @@ url: https://jser.info/
 
 既存の[Issue](https://github.com/jser/ping/issues)で興味深いものがあるなら :+1: などのリアクションボタンで投票すると参考になります。
 
+## Twitter
+
+Twitterの[@jser_info](https://twitter.com/jser_info "@jser_info")に"ping"とURLを書いたmentionを送ることでもIssueを作成できます。
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr"><a href="https://twitter.com/jser_info">@jser_info</a> ping <a href="https://t.co/kYEybZW5Yn">https://t.co/kYEybZW5Yn</a><br>これ気になる</p>&mdash; azu (@azu_re) <a href="https://twitter.com/azu_re/status/785849237519073281">October 11, 2016</a></blockquote>
+
+
 ## Gitter
 
 手早くPingを送る方法として[jser/jser.info - Gitter](https://gitter.im/jser/jser.info?source=orgpage "jser/jser.info - Gitter")もあります。
