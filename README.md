@@ -18,15 +18,14 @@
 
 手動でIssueを作りたい場合は、[Create New Issue](https://github.com/jser/ping/issues/new?body=---%0D%0Atitle%3A+JSer.info%0D%0Aurl%3A+https%3A%2F%2Fjser.info%2F%0D%0A%0D%0A---%0D%0A%0D%0A%5B%E7%9F%AD%E3%81%84%E8%AA%AC%E6%98%8E%5D)から次のフォーマットを埋めると良さそうです。
 
-```yaml
----
-title: JSer.info
-url: https://jser.info/
+    ---
+    title: JSer.info
+    url: https://jser.info/
+    
+    ---
+    
+    [短い説明]
 
----
-
-[短い説明]
-```
 
 既存の[Issue](https://github.com/jser/ping/issues)で興味深いものがあるなら :+1: などのリアクションボタンで投票すると参考になります。
 
@@ -36,6 +35,41 @@ Twitterの[@jser_info](https://twitter.com/jser_info "@jser_info")に"ping"とUR
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr"><a href="https://twitter.com/jser_info">@jser_info</a> ping <a href="https://t.co/kYEybZW5Yn">https://t.co/kYEybZW5Yn</a><br>これ気になる</p>&mdash; azu (@azu_re) <a href="https://twitter.com/azu_re/status/785849237519073281">October 11, 2016</a></blockquote>
 
+## API
+
+APIの実装は[serverless/ping at master · jser/serverless](https://github.com/jser/serverless/tree/master/ping "serverless/ping at master · jser/serverless")を参照
+
+次のように、`POST https://d6qujk40a3.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create`へ、
+
+```json
+{
+  "url": "https://jser.info",
+  "description": "短いメッセージ",
+  "user": "@azu"
+}
+```
+
+のようなデータを投げることでもIssueを作ることができます。
+`url`以外は省略可能です。
+
+JavaScriptのサンプルコード。
+
+```js
+var xhr = new XMLHttpRequest();
+xhr.onload = function() {
+    console.log(xhr);
+};
+xhr.open("POST", "API/ping/create");
+xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+var data = {
+    "url": "https://d6qujk40a3.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create",
+    "description": "短いメッセージ",
+    "user": "@azu"
+};
+xhr.send(JSON.stringify(data));
+```
+
+ブックマークレットの例は [docs/bookmarklets/ping-to-jser-info.js](docs/bookmarklets/ping-to-jser-info.js) を参照してください。
 
 ## Gitter
 
