@@ -39,7 +39,7 @@ Twitterの[@jser_info](https://twitter.com/jser_info "@jser_info")に"ping"とUR
 
 APIの実装は[serverless/ping at master · jser/serverless](https://github.com/jser/serverless/tree/master/ping "serverless/ping at master · jser/serverless")を参照
 
-次のように、`POST https://d6qujk40a3.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create`へ、
+次のように、`POST https://rihxwdqmx9.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create`へ、
 
 ```json
 {
@@ -62,7 +62,7 @@ xhr.onload = function() {
 xhr.open("POST", "API/ping/create");
 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 var data = {
-    "url": "https://d6qujk40a3.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create",
+    "url": "https://rihxwdqmx9.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create",
     "description": "短いメッセージ",
     "user": "@azu"
 };

@@ -12,7 +12,7 @@ function createIssue(issueData, callback) {
     xhr.onerror = function() {
         callback(new Error(xhr.responseText));
     };
-    xhr.open("POST", "https://d6qujk40a3.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create");
+    xhr.open("POST", "https://rihxwdqmx9.execute-api.ap-northeast-1.amazonaws.com/prod/ping/create");
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(issueData));
 }
